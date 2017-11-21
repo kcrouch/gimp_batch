@@ -3,14 +3,14 @@
 
 ; See http://gimpforums.com/thread-batch-despeckle
 
-(define selffilename "\n- kkiel_batch_despeckle.scm")
+(define selffilename "\n- cartoon_batch.scm")
 
 ; Batch mode wrapper
-(define (kkiel_batch_despeckle file_extension destination_directory)
+(define (cartoon_batch file_prefix destination_directory)
   (let* 
     (
       (destination_file "")
-      (varFileList (cadr (file-glob (string-append "*" file_extension) 1))) ; make a list of all the files that match the file extension
+      (varFileList (cadr (file-glob (string-append file_prefix "*") 1))) ; make a list of all the files that match the file extension
 
       ; Adjust these values to suit
       (radius 3)         ; Filter box radius (default = 3)
@@ -39,7 +39,7 @@
 
               (plug-in-despeckle RUN-NONINTERACTIVE image drawable radius despeckle_type black_level white_level)
               
-              (set! destination_file (string-append destination_directory DIR-SEPARATOR filename))
+              (set! destination_file (string-append destination_directory DIR-SEPARATOR "out-" filename))
               (gimp-file-save RUN-NONINTERACTIVE image drawable destination_file destination_file)
               (gimp-image-delete image)                  ; unload the image           
         )
@@ -49,10 +49,10 @@
   )
 )
 
-;(define (script-fu-kkiel_interactive_batch_despeckle destination_directory file_extension)                     
+;(define (script-fu-kkiel_interactive_batch_despeckle destination_directory file_prefix)                     
 ;  (let* (
 ;        )
-;        (kkiel_batch_despeckle file_extension destination_directory)
+;        (cartoon_batch file_prefix destination_directory)
 ;  )
 ;)
 ;

@@ -1,2 +1,3 @@
-
-"C:\Program Files\GIMP-2.0\bin\gimp-2.6.exe" -i -f -d --verbose -b "(kkiel_batch_despeckle \".png\" \"despeckle\")" -b "(gimp-quit 0)"
+#!/bin/sh
+GIMP_BIN=/Applications/GIMP.app/Contents/MacOS/GIMP
+$GIMP_BIN -i -f -d --verbose -b "(cartoon_batch \"frame\" \".\")" -b "(gimp-quit 0)"
